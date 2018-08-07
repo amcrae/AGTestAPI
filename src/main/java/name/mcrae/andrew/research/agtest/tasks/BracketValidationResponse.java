@@ -1,7 +1,14 @@
 package name.mcrae.andrew.research.agtest.tasks;
 
-public class BracketValidationResponse {
+import java.io.Serializable;
 
+public class BracketValidationResponse implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4921650303828928756L;
+	
 	private String input;
 	private boolean isBalanced;
 	

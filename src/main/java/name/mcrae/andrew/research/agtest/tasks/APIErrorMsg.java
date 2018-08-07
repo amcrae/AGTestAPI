@@ -1,10 +1,19 @@
 package name.mcrae.andrew.research.agtest.tasks;
 
-public class APIErrorMsg {
+import java.io.Serializable;
+
+public class APIErrorMsg implements Serializable {
+	
+	private static final long serialVersionUID = -4126249227393705985L;
 	
 	private String name;
 	
-	public class ErrorDetails {
+	public class ErrorDetails implements Serializable {
+		
+		public ErrorDetails() {
+		  super();
+		}
+		
 		private String location;
 		private String param;
 		private String msg;
@@ -55,7 +64,10 @@ public class APIErrorMsg {
 		this.details = details;
 	}
 	
-
+	public APIErrorMsg() {
+		super();
+	}
+	
 	public APIErrorMsg(String msg, String varName, Throwable cause) {
 		super();
 		if (cause instanceof IllegalArgumentException) {
