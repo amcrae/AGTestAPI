@@ -23,10 +23,10 @@ public class BracketsService {
 	 * Implementation of: 
 	 * {@linkplain https://join.autogeneral.com.au/swagger-ui/?url=/swagger.json#/tasks/get_tasks_validateBrackets }
 	 * */
-	@RequestMapping(path="v1/tasks/validateBrackets")
+	@RequestMapping(path="/agtestapi/1.0/tasks/validateBrackets")
 	public BracketValidationResponse validateBrackets_v1(@RequestParam(name="input") String input ) throws ValidationException {
-		if (input==null || input.length()>50) {
-			throw new ValidationException("Must be between 0 and 50 chars long", "text", new IllegalArgumentException("input"));
+		if (input==null || input.length()==0 || input.length()>50) {
+			throw new ValidationException("Must be between 1 and 50 chars long", "text", new IllegalArgumentException("input"));
 		}
 		BracketValidationResponse answer = new BracketValidationResponse();
 		answer.setInput(input);

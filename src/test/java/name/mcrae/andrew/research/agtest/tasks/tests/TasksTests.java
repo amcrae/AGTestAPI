@@ -31,9 +31,22 @@ public class TasksTests extends TestCase {
 		}
 	}
 
+
+	@Test
+	public void testBracketsTooShortError() throws Exception {
+		try {
+			bapi.validateBrackets_v1("");
+			fail("No exception thrown on bad input.");
+		} catch (Exception vex) {
+			assertTrue("Wrong type of exception", vex instanceof ValidationException);
+		}
+	}
+
+	
+	
 	@Test
 	public void testBracketsTrivial() throws Exception {
-		BracketValidationResponse answer = bapi.validateBrackets_v1("");
+		BracketValidationResponse answer = bapi.validateBrackets_v1("X");
 		assertTrue("Trivial case was unbalanced.", answer.getIsBalanced());
 	}
 	
