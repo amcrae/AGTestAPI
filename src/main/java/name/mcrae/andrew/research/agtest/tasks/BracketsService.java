@@ -18,7 +18,10 @@ public class BracketsService {
 	 * */
 	
 	@RequestMapping(path="v1/tasks/validateBrackets")
-	public BracketValidationResponse validateBrackets_v1(@RequestParam(name="input") String input )  {
+	public BracketValidationResponse validateBrackets_v1(@RequestParam(name="input") String input ) throws ValidationException {
+		if (input==null || input.length()>50) {
+			throw new ValidationException("Must be between 1 and 50 chars long", "text", new IllegalArgumentException("input"));
+		}
 		BracketValidationResponse answer = new BracketValidationResponse();
 		return answer;
 	}
