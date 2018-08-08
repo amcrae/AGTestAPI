@@ -48,21 +48,29 @@ Initial Implementation
 --------------------------
 Due to time and experience constraints, the utopian design could not have been achieved. Instead, here is a minimalist design which lacks scalability and data persistence.
 
-- One project containing both the /tasks implementation and /todo/ implementation as JAX-RS & Spring Boot.
-- One generated Docker Image of Java 8 + API JAR running both services plus an in-memory non-persistent HSQLDB database.
+- One project containing both the /tasks implementation as JAX-RS & Spring Boot.
+- One generated Docker Image of Java 8 + API JAR for running all services plus an in-memory non-persistent HSQLDB database.
 - One container running this docker image.
 - Single-node cluster running that container.
 
+* The /todo/ service has not been implemented yet.
 
 How To Build
-----------------
+---------------
 
-*Java* :
 	mvn package
 	
-*Docker* :
+	docker build -t agtestapi .
+
+How to Run
+------------
+
+Run docker image locally:
+	docker run -it --rm --network=bridge -p 127.0.0.1:8080:8080 --name agtestapi agtestapi:latest
+
+Run docker image on AWS:
+	  docker image tag  agtestapi  nnnnnnnnnnnn.dkr.ecr.ap-southeast-2.amazonaws.com/research
+	  aws ecr get-login --no-include-email
+	  docker login -u AWS  https://nnnnnnnnnnnn.dkr.ecr.ap-southeast-2.amazonaws.com
+	  docker push nnnnnnnnnnnn.dkr.ecr.ap-southeast-2.amazonaws.com/research
 	  
-
-
-
-
