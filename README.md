@@ -66,11 +66,16 @@ How to Run
 ------------
 
 Run docker image locally:
+
 	docker run -it --rm --network=bridge -p 127.0.0.1:8080:8080 --name agtestapi agtestapi:latest
 
 Run docker image on AWS:
-	  docker image tag  agtestapi  nnnnnnnnnnnn.dkr.ecr.ap-southeast-2.amazonaws.com/research
-	  aws ecr get-login --no-include-email
-	  docker login -u AWS  https://nnnnnnnnnnnn.dkr.ecr.ap-southeast-2.amazonaws.com
-	  docker push nnnnnnnnnnnn.dkr.ecr.ap-southeast-2.amazonaws.com/research
+
+	docker image tag  agtestapi  nnnnnnnnnnnn.dkr.ecr.ap-southeast-2.amazonaws.com/research
+	
+	aws ecr get-login --no-include-email
+	
+	docker login -u AWS  https://nnnnnnnnnnnn.dkr.ecr.ap-southeast-2.amazonaws.com
+	
+	docker push nnnnnnnnnnnn.dkr.ecr.ap-southeast-2.amazonaws.com/research
 	  
