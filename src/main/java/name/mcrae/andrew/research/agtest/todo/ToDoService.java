@@ -22,7 +22,7 @@ public class ToDoService {
 
 	private ToDoRepository db;
 	
-	@RequestMapping(path="/agtest/1.0/todo", method=RequestMethod.POST)
+	@RequestMapping(path="/agtestapi/1.0/todo", method=RequestMethod.POST)
 	@ResponseStatus(code=HttpStatus.OK)
 	public ToDoItem createItem_v1( @RequestBody ToDoTemplate initialContent) throws ValidationException {
 		ToDoItem item = new ToDoItem(initialContent);
@@ -30,7 +30,7 @@ public class ToDoService {
 		return item;
 	}
 
-	@RequestMapping(path="/agtest/1.0/todo/{tid}", method=RequestMethod.GET)
+	@RequestMapping(path="/agtestapi/1.0/todo/{tid}", method=RequestMethod.GET)
 	@ResponseStatus(code=HttpStatus.OK)
 	public ToDoItem getItem_v1(@PathVariable("tid") Long itemId) {
 		ToDoItem answer = db.findOne(itemId);
@@ -39,7 +39,7 @@ public class ToDoService {
 	}
 
 	
-	@RequestMapping(path="/agtest/1.0/todo/{tid}", method=RequestMethod.PATCH)
+	@RequestMapping(path="/agtestapi/1.0/todo/{tid}", method=RequestMethod.PATCH)
 	@ResponseStatus(code=HttpStatus.OK)
 	public ToDoItem updateItem_v1(@PathVariable("tid") Long itemId, 
 			@RequestBody ToDoItemUpdateRequest changes

@@ -112,6 +112,13 @@ public class TasksTests extends TestCase {
 		assertTrue("Should be balanced.", answer.getIsBalanced());
 	}
 	
+	@Test
+	public void testBracketsParade() throws Exception {
+		String input =  "{}[]() ";
+		BracketValidationResponse answer = bapi.validateBrackets_v1(input);
+		assertTrue("Should be balanced.", answer.getIsBalanced());
+	}
+	
 	
 	
 }
