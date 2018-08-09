@@ -48,12 +48,11 @@ Initial Implementation
 --------------------------
 Due to time and experience constraints, the utopian design could not have been achieved. Instead, here is a minimalist design which lacks scalability and data persistence.
 
-- One project containing both the /tasks implementation as JAX-RS & Spring Boot.
-- One generated Docker Image of Java 8 + API JAR for running all services plus an in-memory non-persistent HSQLDB database.
+- One project containing both the /tasks and /todo implementation as JAX-RS & Spring Boot.
+- One generated Docker Image of Java 8 + API JAR for running both services plus an in-memory non-persistent HSQLDB database.
 - One container running this docker image.
 - Single-node cluster running that container.
 
-* The /todo/ service has not been implemented yet.
 
 How To Build
 ---------------
@@ -69,7 +68,7 @@ Run docker image locally:
 
 	docker run -it --rm --network=bridge -p 127.0.0.1:8080:8080 --name agtestapi agtestapi:latest
 
-Run docker image on AWS:
+Deploy docker image on AWS:
 
 	docker image tag  agtestapi  nnnnnnnnnnnn.dkr.ecr.ap-southeast-2.amazonaws.com/research
 	
@@ -79,3 +78,6 @@ Run docker image on AWS:
 	
 	docker push nnnnnnnnnnnn.dkr.ecr.ap-southeast-2.amazonaws.com/research
 	  
+
+The EC2 launch option creates a VPC and SG management puzzle, so it was easier to create the container with FARGATE compatibility and create a Task with the Fargate launch type.
+A free tier t2.tiny size instance of 512MB and 256/1024 cpu slices was plenty to run this task.
