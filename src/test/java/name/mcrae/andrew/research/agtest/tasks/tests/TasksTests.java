@@ -58,7 +58,7 @@ public class TasksTests extends TestCase {
 
 	@Test
 	public void testBracketsSimpleRn() throws Exception {
-		BracketValidationResponse answer = bapi.validateBrackets_v1("[]");
+		BracketValidationResponse answer = bapi.validateBrackets_v1("()");
 		assertTrue("Simple round case was unbalanced.", answer.getIsBalanced());
 	}
 
@@ -103,6 +103,13 @@ public class TasksTests extends TestCase {
 		String input =  "({[]})({[]}) ({[]})";
 		BracketValidationResponse answer = bapi.validateBrackets_v1(input);
 		assertTrue("Should be balanced.", answer.getIsBalanced());
+	}
+
+	@Test
+	public void testBracketsEg5() throws Exception {
+		String input =  "{[()}]";
+		BracketValidationResponse answer = bapi.validateBrackets_v1(input);
+		assertFalse("Should be unbalanced.", answer.getIsBalanced());
 	}
 	
 	@Test
