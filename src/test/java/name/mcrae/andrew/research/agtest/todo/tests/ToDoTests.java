@@ -63,7 +63,7 @@ public class ToDoTests {
 	
 
 	@Test
-	public void testEditItem_v1() throws ValidationException{
+	public void testEditItemAll_v1() throws ValidationException{
 		ToDoTemplate tmp = new ToDoTemplate();
 		tmp.setText("Foo3 note.");
 		ToDoItem item3 = tds.createItem_v1(tmp);
@@ -76,7 +76,24 @@ public class ToDoTests {
 		ToDoItem item3b = tds.getItem_v1(item3.getId());
 		
 		assertEquals("text was not updated", changes.getText(), item3b.getText());
-		assertEquals("completion flag was not updated", changes.getIsCompleted(), item3b.getIsCompleted());
+		assertEquals("completion flag was not updated", true, item3b.getIsCompleted());
+		assertEquals("creation timestamp was not preserved", item3.getCreatedAt(), item3b.getCreatedAt());
+	}
+
+	@Test
+	public void testEditItemSingle_v1() throws ValidationException{
+		ToDoTemplate tmp = new ToDoTemplate();
+		tmp.setText("Foo4 note.");
+		ToDoItem item3 = tds.createItem_v1(tmp);
+		
+		ToDoItemUpdateRequest changes = new ToDoItemUpdateRequest();
+		changes.setIsCompleted(true);
+		ToDoItem throwaway = tds.updateItem_v1(item3.getId(), changes);
+		
+		ToDoItem item3b = tds.getItem_v1(item3.getId());
+		
+		assertEquals("text should be same", item3.getText(), item3b.getText());
+		assertEquals("completion flag was not updated", true, item3b.getIsCompleted());
 		assertEquals("creation timestamp was not preserved", item3.getCreatedAt(), item3b.getCreatedAt());
 	}
 	

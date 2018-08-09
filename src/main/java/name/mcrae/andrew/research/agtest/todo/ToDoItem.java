@@ -71,7 +71,7 @@ public class ToDoItem implements Serializable {
 	}
 	
 	public void update(ToDoItemUpdateRequest up) {
-		this.setText(up.getText());
-		this.setIsCompleted(up.getIsCompleted());
+		if (up.getText()!=null) this.setText(up.getText());
+		if (up.getIsCompleted().isPresent()) this.setIsCompleted( up.getIsCompleted().get() );
 	}
 }
